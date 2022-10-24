@@ -1,0 +1,16 @@
+{
+  // See http://go.microsoft.com/fwlink/?LinkId=827846
+  // for the documentation about the extensions.json format
+  "recommendations": [
+    "waderyan.babelrc",
+    "mikestead.dotenv",
+    "dbaeumer.vscode-eslint",
+    "mrmlnc.vscode-json5",
+    "esbenp.prettier-vscode",
+    "rebornix.project-snippets",
+    "xaver.clang-format",
+    "redhat.vscode-yaml",
+    "golang.go",
+    "zxh404.vscode-proto3"
+  ]
+}
