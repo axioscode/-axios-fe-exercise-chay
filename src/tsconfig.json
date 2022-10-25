@@ -22,7 +22,8 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "public/fonts/fonts.js"
   ],
   "exclude": [
     "node_modules"
