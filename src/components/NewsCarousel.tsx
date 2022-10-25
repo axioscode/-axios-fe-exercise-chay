@@ -1,5 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import Carousel from 'nuka-carousel'
 import Slide from '../components/Slide'
 import useCarouselQuery from '../hooks/useCarouselQuery'
@@ -8,7 +10,7 @@ import useWindowWidth from '../hooks/useWindowWidth'
 type Props = {}
 
 const NewsCarousel: FC<Props> = () => {
-  const isMobile = useWindowWidth() <= 375
+  const isMobile = useWindowWidth() <= 700
   const articles = useCarouselQuery()
   const slidesToShow = (width: number) => {
     if (width <= 375) return 1.5
@@ -20,8 +22,25 @@ const NewsCarousel: FC<Props> = () => {
     <CarouselContainer>
       <Carousel
         slidesToShow={slidesToShow(useWindowWidth())}
-        renderCenterLeftControls={isMobile ? () => null : ({previousSlide}) => (<CarouselBtn>hello</CarouselBtn>  )}
-        renderCenterRightControls={() => null}
+        renderCenterLeftControls={
+          isMobile
+            ? () => null
+            : ({ previousSlide }) => (
+                <CarouselBtnLeft onClick={previousSlide}>
+                  <FontAwesomeIcon icon={faChevronLeft} size="6x" />
+                </CarouselBtnLeft>
+              )
+        }
+        renderCenterRightControls={
+          isMobile
+            ? () => null
+            : ({ nextSlide }) => (
+                <CarouselBtnRight onClick={nextSlide}>
+                  <FontAwesomeIcon icon={faChevronRight} size="6x" />
+                </CarouselBtnRight>
+              )
+        }
+        /* renderCenterRightControls={() => null} */
         cellSpacing={20}
       >
         {articles?.map((article) => (
@@ -44,12 +63,26 @@ const CarouselContainer = styled.div`
 }
 `
 
-const CarouselBtn = styled.button`
-background-color: transparent;
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    outline: none;
+const CarouselBtnLeft = styled.button`
+  position: absolute;
+  top: 70px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+`
+
+const CarouselBtnRight = styled.button`
+  position: absolute;
+  top: 70px;
+  /* right: 0px; */
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
 `
 export default NewsCarousel

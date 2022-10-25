@@ -57,7 +57,6 @@ const Slide: FC<Props> = ({ article }) => {
 
   const section = article?.topics?.[0]?.name || 'News'
   const articleUrl = article?.permalink || ''
-  console.log(article)
 
   return (
     <SlideContainer isMobile={isMobile}>
@@ -72,7 +71,7 @@ const Slide: FC<Props> = ({ article }) => {
           ` - ${section}`
         ) : (
           <div>
-            <GoDeeperLink href={articleUrl}>Go Deeper &#10230;</GoDeeperLink>
+            <GoDeeperLink href={articleUrl} target="_blank">Go Deeper &#10230;</GoDeeperLink>
           </div>
         )}
       </DateContainer>

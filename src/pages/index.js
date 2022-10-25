@@ -39,7 +39,6 @@ ${({isMobile}) => !isMobile ? `
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 120px;
   ` : null}
 `
 const Title = styled.h1`
@@ -48,12 +47,6 @@ const Title = styled.h1`
   margin: 40px auto 40px 20px;
 `
 const BtnContainer = styled.div`
-  /* ${({ isMobile }) =>
-    !isMobile
-      ? ` */
-/*   width: 187px; */
-/*   `
-      : null} */
   margin-top: 3px;
   padding: 0 20px;
 `
