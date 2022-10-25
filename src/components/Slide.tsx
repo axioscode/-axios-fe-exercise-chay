@@ -39,7 +39,8 @@ type Props = {
 }
 
 const Slide: FC<Props> = ({ article }) => {
-  const isMobile = useWindowWidth() <= 375
+  const isMobile = useWindowWidth() <= 980
+  const dateContainerAlignment = useWindowWidth() >= 375
 
   const imgUrl =
     article?.primary_image?.crops['16x9']?.sizes?.filter((image) => {
@@ -59,24 +60,37 @@ const Slide: FC<Props> = ({ article }) => {
   console.log(article)
 
   return (
-    <SlideContainer>
+    <SlideContainer isMobile={isMobile}>
       <a href={articleUrl} target="_blank" rel="noreferrer">
         <Image imgUrl={imgUrl} alt={altText} />
       </a>
       {!isMobile && <RespArticleSection>{section}</RespArticleSection>}
       <Headline headline={headline} isMobile={isMobile} />
       <DateContainer isMobile={isMobile}>
-        <span>
-          {formattedDate} {isMobile ? `- ${section}` : null}
-        </span>
+        <div>{formattedDate} </div>
+        {isMobile ? (
+          ` - ${section}`
+        ) : (
+          <div>
+            <GoDeeperLink href={articleUrl}>Go Deeper &#10230;</GoDeeperLink>
+          </div>
+        )}
       </DateContainer>
     </SlideContainer>
   )
 }
 
-const SlideContainer = styled.figure`
-  max-width: 217px;
-  margin-bottom: 40px;
+type SlideContainerProps = {
+  isMobile: boolean
+}
+
+const SlideContainer = styled.figure<SlideContainerProps>`
+  ${({ isMobile }) => (isMobile ? `width: 217px;` : `width: 333px;`)}
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+  ${({ isMobile }) => (isMobile ? `margin-bottom: 40px;` : `margin-bottom: 64px;`)}
 `
 
 const RespArticleSection = styled.div`
@@ -86,9 +100,27 @@ const RespArticleSection = styled.div`
 `
 
 const DateContainer = styled.div`
+  ${({ isMobile }) =>
+    !isMobile
+      ? `
+align-items: center;
+justify-content: space-between;
+  `
+      : null}
+  display:flex;
   color: #656568;
   font-size: 12px;
   margin-top: 12px;
 `
-const FormattedDate = styled.span``
+
+const GoDeeperLink = styled.a`
+  color: #2257da;
+  text-decoration: none;
+  font-size: 18px;
+  text-align: right;
+`
+const FormattedDate = styled.div`
+  /* color: #656568 */
+  /* font-size: 12px; */
+`
 export default Slide

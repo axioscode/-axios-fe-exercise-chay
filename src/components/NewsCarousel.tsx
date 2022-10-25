@@ -20,7 +20,7 @@ const NewsCarousel: FC<Props> = () => {
     <CarouselContainer>
       <Carousel
         slidesToShow={slidesToShow(useWindowWidth())}
-        renderCenterLeftControls={isMobile ? () => null : null}
+        renderCenterLeftControls={isMobile ? () => null : ({previousSlide}) => (<CarouselBtn>hello</CarouselBtn>  )}
         renderCenterRightControls={() => null}
         cellSpacing={20}
       >
@@ -33,6 +33,7 @@ const NewsCarousel: FC<Props> = () => {
     </CarouselContainer>
   )
 }
+
 const CarouselContainer = styled.div`
   margin: 0;
   padding: 0;
@@ -41,5 +42,14 @@ const CarouselContainer = styled.div`
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
+`
+
+const CarouselBtn = styled.button`
+background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
 `
 export default NewsCarousel

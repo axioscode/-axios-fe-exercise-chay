@@ -3,32 +3,57 @@ import Head from 'next/head'
 import NewsCarousel from '../components/NewsCarousel'
 import GoToAxiosBtn from '../components/GoToAxiosBtn'
 import { AXIOS_WEBSITE } from '../helpers/resourceConstants'
+import useWindowWidth from '../hooks/useWindowWidth'
 
 const Index = () => {
+  const isMobile = useWindowWidth() <= 700
   return (
     <>
       <Head>
         <title>Axios Front End Exercise</title>
       </Head>
-      <div>
+      <TitleContainer isMobile={isMobile}>
         <Title>More from Axios.com</Title>
-      </div>
+        {!isMobile && (
+          <BtnContainer isMobile={isMobile}>
+            <LinkStyle href={AXIOS_WEBSITE}>
+              <GoToAxiosBtn />
+            </LinkStyle>
+          </BtnContainer>
+        )}
+      </TitleContainer>
       <NewsCarousel />
-      <BtnContainer>
-        <LinkStyle href={AXIOS_WEBSITE}>
-          <GoToAxiosBtn />
-        </LinkStyle>
-      </BtnContainer>
+      {isMobile && (
+        <BtnContainer>
+          <LinkStyle href={AXIOS_WEBSITE}>
+            <GoToAxiosBtn />
+          </LinkStyle>
+        </BtnContainer>
+      )}
     </>
   )
 }
 
+const TitleContainer = styled.div`
+${({isMobile}) => !isMobile ? `
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 120px;
+  ` : null}
+`
 const Title = styled.h1`
   color: #333335;
   font-size: 32px;
   margin: 40px auto 40px 20px;
 `
 const BtnContainer = styled.div`
+  /* ${({ isMobile }) =>
+    !isMobile
+      ? ` */
+/*   width: 187px; */
+/*   `
+      : null} */
   margin-top: 3px;
   padding: 0 20px;
 `
