@@ -9,6 +9,9 @@ const GoToAxiosBtn: FC<GoToAxiosBtnProps> = () => {
 }
 
 const AxiosBtn = styled.button`
+  color: #ffff;
+  background-color: #2257da;
+  border-color: #2257da;
   display: block;
   width: 100%;
   border-width: 1px;

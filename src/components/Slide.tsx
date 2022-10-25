@@ -68,6 +68,7 @@ const Slide: FC<Props> = ({ article }) => {
 
 const SlideContainer = styled.figure`
   max-width: 217px;
+  margin-bottom: 40px;
 `
 const DateContainer = styled.div`
   color: #656568;
