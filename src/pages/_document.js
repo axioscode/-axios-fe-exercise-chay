@@ -15,7 +15,7 @@ const RootDocumentMarkup = () => {
         <Head>
           <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         </Head>
-        <body>
+        <body style={{ margin: '0', padding: '0' }}>
           <Main />
           <NextScript />
         </body>
