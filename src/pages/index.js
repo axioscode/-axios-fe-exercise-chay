@@ -14,9 +14,11 @@ const Index = () => {
         <Title>More from Axios.com</Title>
       </div>
       <NewsCarousel />
-      <a href={AXIOS_WEBSITE}>
-        <GoToAxiosBtn />
-      </a>
+      <BtnContainer>
+        <LinkStyle href={AXIOS_WEBSITE}>
+          <GoToAxiosBtn />
+        </LinkStyle>
+      </BtnContainer>
     </>
   )
 }
@@ -25,6 +27,14 @@ const Title = styled.h1`
   color: #333335;
   font-size: 32px;
   margin: 40px auto 40px 20px;
+`
+const BtnContainer = styled.div`
+  margin-top: 3px;
+  padding: 0 20px;
+`
+
+const LinkStyle = styled.a`
+  text-decoration: none;
 `
 
 export default Index

@@ -17,11 +17,10 @@ const NewsCarousel: FC<Props> = () => {
         slidesToShow={isMobile ? 1.5 : 3}
         renderCenterLeftControls={isMobile ? () => null : null}
         renderCenterRightControls={() => null}
-        heightMode="first"
       >
         {articles?.map((article) => (
           <>
-            <Slide article={article} />
+            <Slide article={article} key={article?.id} />
           </>
         ))}
       </Carousel>
