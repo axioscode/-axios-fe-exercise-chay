@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import Head from 'next/head'
 import NewsCarousel from '../components/NewsCarousel'
+import GoToAxiosBtn from '../components/GoToAxiosBtn'
+import { AXIOS_WEBSITE } from '../helpers/resourceConstants'
 
 const Index = () => {
   return (
@@ -12,6 +14,9 @@ const Index = () => {
         <Title>More from Axios.com</Title>
       </div>
       <NewsCarousel />
+      <a href={AXIOS_WEBSITE}>
+        <GoToAxiosBtn />
+      </a>
     </>
   )
 }
