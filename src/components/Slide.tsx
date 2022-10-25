@@ -40,7 +40,6 @@ type Props = {
 
 const Slide: FC<Props> = ({ article }) => {
   const isMobile = useWindowWidth() <= 980
-  const dateContainerAlignment = useWindowWidth() >= 375
 
   const imgUrl =
     article?.primary_image?.crops['16x9']?.sizes?.filter((image) => {
@@ -50,6 +49,7 @@ const Slide: FC<Props> = ({ article }) => {
     PLACEHOLDER_URL
   const altText = article?.primary_image?.alt_text || ''
   const headline = article?.headline || ''
+  const author = article?.authors?.[0]?.display_name || ''
 
   const date = new Date(article?.published_date)
   const options = { year: 'numeric', month: 'long', day: 'numeric' }
@@ -63,7 +63,12 @@ const Slide: FC<Props> = ({ article }) => {
       <a href={articleUrl} target="_blank" rel="noreferrer">
         <Image imgUrl={imgUrl} alt={altText} />
       </a>
-      {!isMobile && <RespArticleSection>{section}</RespArticleSection>}
+      {!isMobile && (
+        <RespArticleSection>
+          <div>{section}</div>
+          <div>{author}</div>
+        </RespArticleSection>
+      )}
       <Headline headline={headline} isMobile={isMobile} />
       <DateContainer isMobile={isMobile}>
         <div>{formattedDate} </div>
@@ -71,7 +76,9 @@ const Slide: FC<Props> = ({ article }) => {
           ` - ${section}`
         ) : (
           <div>
-            <GoDeeperLink href={articleUrl} target="_blank">Go Deeper &#10230;</GoDeeperLink>
+            <GoDeeperLink href={articleUrl} target="_blank">
+              Go Deeper &#10230;
+            </GoDeeperLink>
           </div>
         )}
       </DateContainer>
@@ -93,6 +100,8 @@ const SlideContainer = styled.figure<SlideContainerProps>`
 `
 
 const RespArticleSection = styled.div`
+  display: flex;
+  justify-content: space-between;
   color: #ab7d36;
   font-size: 12px;
   margin-top: 24px;
@@ -118,8 +127,5 @@ const GoDeeperLink = styled.a`
   font-size: 18px;
   text-align: right;
 `
-const FormattedDate = styled.div`
-  /* color: #656568 */
-  /* font-size: 12px; */
-`
+
 export default Slide

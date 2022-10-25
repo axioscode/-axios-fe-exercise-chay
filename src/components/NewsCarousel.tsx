@@ -40,8 +40,7 @@ const NewsCarousel: FC<Props> = () => {
                 </CarouselBtnRight>
               )
         }
-        /* renderCenterRightControls={() => null} */
-        cellSpacing={20}
+        cellSpacing={10}
       >
         {articles?.map((article) => (
           <>
@@ -77,7 +76,7 @@ const CarouselBtnLeft = styled.button`
 const CarouselBtnRight = styled.button`
   position: absolute;
   top: 70px;
-  /* right: 0px; */
+  right: 0px;
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
