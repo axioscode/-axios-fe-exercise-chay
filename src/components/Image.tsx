@@ -12,7 +12,11 @@ const Image: FC<Props> = ({ imgUrl, alt }) => {
   return <Thumbnail src={imgUrl} alt={alt} isMobile={isMobile} />
 }
 
-const Thumbnail = styled.img`
+type ThumbnailProps = {
+  isMobile: boolean
+}
+
+const Thumbnail = styled.img<ThumbnailProps>`
   ${({ isMobile }) => (isMobile ? `height: 133px;` : `height: 205px`)}
 `
 

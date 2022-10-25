@@ -3,15 +3,20 @@ import styled from 'styled-components'
 
 interface ArticleHeadlineProps {
   headline: string
+  isMobile: boolean
 }
 
-const ArticleHeadline: FC<ArticleHeadlineProps> = ({ headline }) => {
-  return <HeadlineContainer>{headline}</HeadlineContainer>
+const ArticleHeadline: FC<ArticleHeadlineProps> = ({ headline, isMobile }) => {
+  return <HeadlineContainer isMobile={isMobile}>{headline}</HeadlineContainer>
 }
 
-const HeadlineContainer = styled.div`
+type HeadlineContainerProps = {
+  isMobile: boolean
+}
+
+const HeadlineContainer = styled.div<HeadlineContainerProps>`
   color: #333335;
-  margin-top: 16px;
+  ${({ isMobile }) => (isMobile ? `margin-top: 16px;` : `margin-top: 8px;`)}
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
