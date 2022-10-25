@@ -10,13 +10,19 @@ type Props = {}
 const NewsCarousel: FC<Props> = () => {
   const isMobile = useWindowWidth() <= 375
   const articles = useCarouselQuery()
+  const slidesToShow = (width: number) => {
+    if (width <= 375) return 1.5
+    if (width <= 700) return 2
+    return 3
+  }
 
   return (
     <CarouselContainer>
       <Carousel
-        slidesToShow={isMobile ? 1.5 : 3}
+        slidesToShow={slidesToShow(useWindowWidth())}
         renderCenterLeftControls={isMobile ? () => null : null}
         renderCenterRightControls={() => null}
+        cellSpacing={20}
       >
         {articles?.map((article) => (
           <>
