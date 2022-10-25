@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
+import useWindowWidth from '../hooks/useWindowWidth'
 
 type Props = {
   imgUrl: string
@@ -7,10 +8,15 @@ type Props = {
 }
 
 const Image: FC<Props> = ({ imgUrl, alt }) => {
-  return <Thumbnail src={imgUrl} alt={alt} />
+  const isMobile = useWindowWidth() <= 700
+  return <Thumbnail src={imgUrl} alt={alt} isMobile={isMobile} />
 }
 
-const Thumbnail = styled.img`
-  height: 133px;
+type ThumbnailProps = {
+  isMobile: boolean
+}
+
+const Thumbnail = styled.img<ThumbnailProps>`
+  ${({ isMobile }) => (isMobile ? `height: 133px;` : `height: 205px;`)}
 `
 export default Image
